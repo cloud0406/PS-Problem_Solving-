@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>출력 결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(word) {
+        let answer = word;
+        // replace 첫 번째 인자 뒷부분에 g(global)를 안붙이면 첫 번째 A만 변경되고 뒤는 안바뀜
+        answer = answer.replace(/A/g, "#"); // answer의 모든(g) A를 #으로 바꿔라
+
+        return answer;
+
+        // *********** 아래 처럼 'for ~ of' 사용해서 빈 문자열에 하나씩 넣어도 됨 ***********
+
+        // let answer = "";
+
+        // for (let x of word) {
+        //   if (x === "A") answer += "#";
+        //   else answer += x;
+        // }
+        // return answer;
+      }
+
+      let word = "BANANA";
+      console.log(solution(word));
+    </script>
+  </body>
+</html>
