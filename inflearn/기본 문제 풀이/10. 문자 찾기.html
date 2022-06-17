@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>출력 결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, t) {
+        // "R"값을 기준으로 좌우로 나눠 배열 만들어줌 , R의개수+1 만큼 배열이 생성됨
+        let answer = s.split(t).length;
+
+        return answer - 1;
+      }
+
+      // 맨 마지막에 기준 값 있어도 마지막에 빈 배열이 추가로 만들어짐
+      let str = "COMPUTERPROGRAMMINGR";
+      console.log(solution(str, "R"));
+    </script>
+  </body>
+</html>
