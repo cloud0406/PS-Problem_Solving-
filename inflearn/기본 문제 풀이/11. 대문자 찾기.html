@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = 0;
+
+        // 대문자 아스키코드 값 : 65~90 , 소문자 : 97~122
+        for (let x of s) {
+          // 아스키 코드 값 확인하려면 : 문자.charCodeAt()
+          if (x.charCodeAt() >= 65 && x.charCodeAt() <= 90) {
+            answer++;
+          }
+        }
+
+        // * 각 문자를 대문자로 변경시켜주면서 변경시킨 값이 이전 값이랑 같으면 같으면 +1 *
+        // for (let x of s) {
+        //   if (x === x.toUpperCase()) answer++;
+        // }
+
+        return answer;
+      }
+
+      let str = "KoreaTimeGood";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
