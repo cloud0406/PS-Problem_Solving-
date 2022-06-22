@@ -7,9 +7,11 @@
     <script>
       function solution(s) {
         let answer = "";
-        //console.log(s.indexOf("K"));
+
         for (let i = 0; i < s.length; i++) {
-          //console.log(s[i], i, s.indexOf(s[i]));
+          // s.indexOf('k',1) : 1번 인덱스부터 첫 번째 k의 인덱스 위치를 찾음 / 없으면 -1 리턴
+          // s.indexOf('k') : 첫 번째 k의 인덱스 위치를 찾음 / 없으면 -1 리턴
+          // 배열을 돌며 현재 원소가 이전에 발견되지 않았다면 answer에 원소추가
           if (s.indexOf(s[i]) === i) answer += s[i];
         }
         return answer;
