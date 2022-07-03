@@ -7,13 +7,24 @@
     <script>
       function solution(arr) {
         let n = arr.length;
+        // 길이 n, 각 인덱스 1인 1차원 배열 초기화 / Array.from()
         let answer = Array.from({ length: n }, () => 1);
         for (let i = 0; i < n; i++) {
           for (let j = 0; j < n; j++) {
-            if (arr[j] > arr[i]) answer[i]++;
+            if (arr[j] > arr[i]) answer[i]++; // 본인보다 높은 수 찾으면 answer배열 인덱스 하나씩 올림
           }
         }
-        return answer;
+
+        // 내 풀이 방법 : filter 메소드 통해서 본인보다 높은 수의 개수를 찾아 answer배열에 추가
+
+        // let answer = [];
+        // arr.map((e) => {
+        //   let arr2 = arr.filter((element) => {
+        //     return element > e;
+        //   });
+        //   answer.push(arr2.length + 1);
+        // });
+        // return answer;
       }
 
       let arr = [87, 89, 92, 100, 76];
