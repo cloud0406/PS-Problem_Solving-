@@ -8,25 +8,30 @@
       function solution(arr) {
         let answer = 0;
         let n = arr.length;
+        // 현재 인덱스를 기준으로 상하좌우 인덱스 비교하기 위해 dx, dy 변수 설정
         let dx = [-1, 0, 1, 0];
         let dy = [0, 1, 0, -1];
         for (let i = 0; i < n; i++) {
           for (let j = 0; j < n; j++) {
-            let flag = 1;
+            let flag = 1; // 봉우리인지 판명하기 위한 변수
+            // 인덱스 arr[i][j]를 기준으로 상하좌우 인덱스 요소를 비교
             for (let k = 0; k < 4; k++) {
+              // 왼쪽, 아래, 오른쪽, 위 순서대로 요소 비교
               let nx = i + dx[k];
               let ny = j + dy[k];
               if (
+                // 가장자리 값에서 배열 밖의 인덱스를 비교해서 오류가 나지 않도록 해당 조건을 추가
                 nx >= 0 &&
                 nx < n &&
                 ny >= 0 &&
                 ny < n &&
-                arr[nx][ny] >= arr[i][j]
+                arr[nx][ny] >= arr[i][j] // 인덱스 비교
               ) {
-                flag = 0;
+                flag = 0; // 주변에 더 큰 값이 있다면 봉우리 아님
                 break;
               }
             }
+            // 0이면 false, 이외의 숫자면 true값
             if (flag) answer++;
           }
         }
