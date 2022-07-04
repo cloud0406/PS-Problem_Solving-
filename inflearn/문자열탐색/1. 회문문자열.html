@@ -30,8 +30,11 @@
     <script>
       function solution(s) {
         let answer = "YES";
-        s = s.toLowerCase();
-        if (s.split("").reverse().join("") != s) return "NO";
+        s = s.toLowerCase(); // 대소문자 통일
+        // 문자열을 split으로 문자 하나하나의 배열로 쪼개준 후 reverse로 뒤집고 join을 통해 이를 다시 문자열로 합침
+        // "goog" -> split : ["g","o","o","g"] -> reverse : ["g","o","o","g"] -> join : "goog"
+        // 새로운 문자열을 리턴받는 것이지 기존 문자열 s를 건드리는 것 X
+        if (s.split("").reverse().join("") != s) return "NO"; // reverse 사용하기 위해서는 배열 형태로 만들어 줘야함
         return answer;
       }
 
