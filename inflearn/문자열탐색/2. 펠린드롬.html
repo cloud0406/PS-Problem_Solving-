@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "YES";
+        // 문자열 소문자로 바꾸고, 소문자가 아닌 모든 문자들 빈문자열('')로 대체
+        // 정규식 표현 -> '/[]/' , g는 global: 문자열안의 모든 문자 탐색 -> ^는 not (아닌 것), 즉 소문자(a-z)가 아닌 것들 ''로 대체
+        s = s.toLowerCase().replace(/[^a-z]/g, "");
+        // 문자열에서는 reverse 사용 불가 -> split으로 나눠주고 reverse로 뒤집은 다음 join으로 다시 문자열로 바꿈
+        if (s.split("").reverse().join("") !== s) return "NO";
+        return answer;
+      }
+
+      let str = "found7, time: study; Yduts; emit, 7Dnuof";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
