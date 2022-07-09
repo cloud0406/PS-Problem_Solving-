@@ -8,13 +8,14 @@
       function solution(s) {
         let answer = "";
         let cnt = 1;
-        s = s + " ";
+        s = s + " "; // 문자열 끝의 다음 인덱스까지 비교하기 위해 빈문자 추가
         for (let i = 0; i < s.length - 1; i++) {
-          if (s[i] === s[i + 1]) cnt++;
+          if (s[i] === s[i + 1]) cnt++; // 다음 인덱스가 같은 문자면 개수 늘려줌
           else {
+            // 다른 문자면 현재 문자와, 문자의 개수 배열에 추가
             answer += s[i];
             if (cnt > 1) answer += String(cnt);
-            cnt = 1;
+            cnt = 1; // 문자 개수 다시 1로 초기화
           }
         }
         return answer;
