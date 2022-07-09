@@ -9,10 +9,10 @@
         let answer = "";
         for (let x of str) {
           // 문자열의 원소인 숫자 문자도 숫자로 처리됨
-
           if (!isNaN(x)) answer += x;
         }
         // parseInt("str") : 문자열에서만 사용 가능 , 문자열 -> 숫자
+        // 앞에 0들 없애줌 , ex) 008030 -> 8030
         return parseInt(answer);
       }
 
