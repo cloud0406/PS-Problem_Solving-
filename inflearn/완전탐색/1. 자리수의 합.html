@@ -41,11 +41,13 @@
       function solution(n, arr) {
         let answer,
           max = Number.MIN_SAFE_INTEGER;
+        // 각 숫자를 문자열로 바꾼 후(toString), 하나씩 쪼개고(split), 쪼갠 값 누적해서 합 구함(reduce)
+        // ex) 128 -> "128" -> ["1", "2", "8"] -> 1 + 2 + 8
         for (let x of arr) {
           let sum = x
             .toString()
             .split("")
-            .reduce((a, b) => a + Number(b), 0);
+            .reduce((a, b) => a + Number(b), 0); // 누적시 문자열값을 숫자로 변경해줘야함
           if (sum > max) {
             max = sum;
             answer = x;
