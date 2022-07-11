@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 소수 확인 함수
+      function isPrime(num) {
+        if (num === 1) return false;
+        // 소수인지 확인할때는 그 수의 제곱근까지만 약수 확인하면 됨
+        // Ex) 16 : 1x16 (1,16 같이 확인), 2x8(2,8 같이 확인), 4x4(=sqrt(16)) / ( 8x2, 16x1) -> 앞의 부분과 순서만 다르지 중복
+        for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
+          // parseInt로 소수점 제거 = Number()
+          if (num % i === 0) return false;
+        }
+
+        return true; // 나눠지는 수가 없으면(=소수이면) true 반환
+      }
+
+      function solution(arr) {
+        let answer = [];
+        for (let x of arr) {
+          // 32 -> "32" -> ["3", "2"] -> ["2", "3"] -> "23" -> 23
+          let res = Number(x.toString().split("").reverse().join("")); // Number로 형변환 해줘야 200 -> 002가 아닌 2로 변환
+          if (isPrime(res)) answer.push(res); // 소수인지 검사하고 맞으면 배열에 푸쉬
+        }
+        return answer;
+      }
+
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
+
+<!-- <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function isPrime(num) {
+        if (num === 1) return false;
+        for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+      function solution(arr) {
+        let answer = [];
+        for (let x of arr) {
+          let res = 0;
+          while (x) {
+            let t = x % 10;
+            res = res * 10 + t;
+            x = parseInt(x / 10);
+          }
+          if (isPrime(res)) answer.push(res);
+        }
+        return answer;
+      }
+
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html> -->
