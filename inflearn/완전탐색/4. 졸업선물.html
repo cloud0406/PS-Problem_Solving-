@@ -8,17 +8,23 @@
       function solution(m, product) {
         let answer = 0;
         let n = product.length;
-        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+        // 최대 개수 구하기위해 적은 비용부터 구매해야 하므로 정렬해야함
+        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1])); // '물품 가격 + 배송비의 합' 의 오름차순으로 정렬
+
+        // 각 물품들이 할인되는 모든 경우를 탐색해야함 -> i는 할인되는 물품을 지정하기 위해 반복 돌림
         for (let i = 0; i < n; i++) {
-          let money = m - (product[i][0] / 2 + product[i][1]);
-          let cnt = 1;
+          let money = m - (product[i][0] / 2 + product[i][1]); // 총 금액 - '물품가격/할인 + 배송비'
+          let cnt = 1; // 구매한 물품 개수
           for (let j = 0; j < n; j++) {
-            if (j !== i && product[j][0] + product[j][1] > money) break;
+            // 할인 받은 물건 제외, 나머지 물건의 물품가격+배송비를 작은 순서대로 확인
+            if (j !== i && product[j][0] + product[j][1] > money) break; // 가격이 현재 남은 금액보다 많다면 더이상 구매할 수 없으므로 반복 멈춤
+            // 구매가능하면
             if (j !== i && product[j][0] + product[j][1] <= money) {
-              money -= product[j][0] + product[j][1];
-              cnt++;
+              money -= product[j][0] + product[j][1]; // 구매 : 현재 총 금액에서 '물품가격+배송비' 뺴줌
+              cnt++; // 구매 물품 개수 증가
             }
           }
+          // 할인받는 물품을 바꿔가면서 모든 경우 테스트하고, 가장 많이 구매할 수 있는 값으로 answer값 변경
           answer = Math.max(answer, cnt);
         }
         return answer;
