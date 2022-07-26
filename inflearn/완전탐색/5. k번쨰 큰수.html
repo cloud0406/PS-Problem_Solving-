@@ -7,14 +7,18 @@
     <script>
       function solution(n, k, card) {
         let answer;
-        let tmp = new Set();
+        let tmp = new Set(); // 중복을 거르기 위해 Set 사용
+
+        // 배열 순회하며 3가지 카드 뽑는 모든 경우를 살펴봄
         for (let i = 0; i < n; i++) {
           for (let j = i + 1; j < n; j++) {
             for (let k = j + 1; k < n; k++) {
+              // 모든 경우를 Set에 추가 (add함수)
               tmp.add(card[i] + card[j] + card[k]);
             }
           }
         }
+        // 정렬해주기 위해 set -> array로 변경 : Array.from()
         let a = Array.from(tmp).sort((a, b) => b - a);
         answer = a[k - 1];
         return answer;
