@@ -7,12 +7,16 @@
     <script>
       function solution(s) {
         let answer;
+        // 중복된 키의 수를 세기 위해 hash map 생성
         let sH = new Map();
+
         for (let x of s) {
+          // 이미 있는 key값은 value를 1올려주고
           if (sH.has(x)) sH.set(x, sH.get(x) + 1);
           else sH.set(x, 1);
         }
         let max = Number.MIN_SAFE_INTEGER;
+        // hash map을 순회하며 [key, value]값 통해 답 구함
         for (let [key, val] of sH) {
           if (val > max) {
             max = val;
