@@ -5,14 +5,17 @@
   </head>
   <body>
     <script>
+      // 슬라이딩 윈도우
       function solution(k, arr) {
         let answer,
           sum = 0;
+        // 첫번째 인덱스부터 k개만큼의 합을 우선 구함
         for (let i = 0; i < k; i++) sum += arr[i];
         answer = sum;
+        // 그 후 다음 인덱스부터는 해당 값을 더해주고 '슬라이딩 윈도우'의 가장 왼쪽 값을 빼주면서 k개만큼의 합을 구하면서 배열 순회
         for (let i = k; i < arr.length; i++) {
           sum += arr[i] - arr[i - k];
-          answer = Math.max(answer, sum);
+          answer = Math.max(answer, sum); // 구해준 값이 최대면 갱신
         }
         return answer;
       }
