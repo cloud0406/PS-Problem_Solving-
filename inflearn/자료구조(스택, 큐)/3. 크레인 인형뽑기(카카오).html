@@ -5,14 +5,18 @@
   </head>
   <body>
     <script>
+      // board: 전체 인형 배열, moves: 뽑기 진행할 열
       function solution(board, moves) {
         let answer = 0;
         let stack = [];
+        // moves의 원소에 해당하는 열을 확인하며 뽑기 진행
         moves.forEach((pos) => {
           for (let i = 0; i < board.length; i++) {
+            // 행은 그대로, 열만 변경하며 확인
             if (board[i][pos - 1] !== 0) {
               let tmp = board[i][pos - 1];
               board[i][pos - 1] = 0;
+              // 뽑은 인형이 스택의 맨 위의 인형이랑 일치할 경우만 터뜨림
               if (tmp === stack[stack.length - 1]) {
                 stack.pop();
                 answer += 2;
