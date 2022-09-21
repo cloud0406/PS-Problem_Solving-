@@ -8,8 +8,11 @@
       function solution(s) {
         let answer;
         let stack = [];
+        // 숫자만 스택에 추가
         for (let x of s) {
           if (!isNaN(x)) stack.push(Number(x));
+          // 연산기호일 경우 해당 케이스에 맞게 진행
+          // +,* 는 상관없지만 -,/의 경우 순서 중요
           else {
             let rt = stack.pop();
             let lt = stack.pop();
