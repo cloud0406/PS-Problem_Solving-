@@ -7,12 +7,16 @@
     <script>
       function solution(need, plan) {
         let answer = "YES";
+        // 문자 하나씩 쪼갬 (필수과목)
         let queue = need.split("");
         for (let x of plan) {
+          // 필수과목인지 확인 후
           if (queue.includes(x)) {
+            // 순서대로 들었는지 확인
             if (x !== queue.shift()) return "NO";
           }
         }
+        // 안들은 필수과목 있는지 확인
         if (queue.length > 0) return "NO";
         return answer;
       }
