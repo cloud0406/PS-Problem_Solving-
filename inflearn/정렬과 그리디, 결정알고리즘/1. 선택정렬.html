@@ -7,12 +7,15 @@
     <script>
       function solution(arr) {
         let answer = arr;
+        // 배열 2중 for문 돌며 왼쪽값에 순서대로 작은 값 넣어줌
         for (let i = 0; i < arr.length; i++) {
           let idx = i;
           for (let j = i + 1; j < arr.length; j++) {
+            // 더 작은 값 찾으면 인덱스 변경
             if (arr[j] < arr[idx]) idx = j;
           }
-          [arr[i], arr[idx]] = [arr[idx], arr[i]];
+          // 왼쪽에 작은 값 보냄 (오름차순)
+          [arr[i], arr[idx]] = [arr[idx], arr[i]]; // 배열 값 서로 변경
         }
         return answer;
       }
