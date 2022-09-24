@@ -8,9 +8,12 @@
       function solution(s) {
         let answer;
         let stack = [];
+        // 스택에 문자를 쌓아두고 닫는 괄호를 만나면 제거
         for (let x of s) {
+          // 닫는 괄호 만나면 스택의 위부터 열린 괄호를 만날때까지 제거
           if (x === ")") {
             while (stack.pop() !== "(");
+            // 닫는괄호가 아닌 문자들은 모두 푸쉬
           } else stack.push(x);
         }
         answer = stack.join("");
