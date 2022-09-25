@@ -7,10 +7,14 @@
     <script>
       function solution(n) {
         let answer = "";
+        // DFS 사용 : 재귀
         function DFS(n) {
+          // 더 나눌 수가 없으면 리턴
           if (n === 0) return;
           else {
+            // 2씩 나누면서 재귀
             DFS(parseInt(n / 2));
+            // 나머지값을 answer에 더해주며 이진 수 완성
             answer += String(n % 2);
           }
         }
