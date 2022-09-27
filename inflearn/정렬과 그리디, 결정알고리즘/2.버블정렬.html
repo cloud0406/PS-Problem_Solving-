@@ -5,9 +5,13 @@
   </head>
   <body>
     <script>
+      // 바로 인접한 두 숫자 비교하며 큰 수 찾아 왼쪽으로 옮김
       function solution(arr) {
         let answer = arr;
+        // 배열 길이만큼 반복
         for (let i = 0; i < arr.length - 1; i++) {
+          // 한바퀴 돌면서 숫자 비교하고 큰 수 왼쪽으로 옮김
+          // 배열길이만큼 반복하면 정렬 완성
           for (let j = 0; j < arr.length - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
               [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
