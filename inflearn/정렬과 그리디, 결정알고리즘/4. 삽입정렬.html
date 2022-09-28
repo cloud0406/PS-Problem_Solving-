@@ -7,13 +7,17 @@
     <script>
       function solution(arr) {
         let answer = arr;
+        // 해당 숫자의 위치를 찾아 정렬함
         for (let i = 0; i < arr.length; i++) {
+          // 기준 설정
           let tmp = arr[i],
             j;
+          // 기준 보다 클 경우 그 자리 비워둠
           for (j = i - 1; j >= 0; j--) {
             if (arr[j] > tmp) arr[j + 1] = arr[j];
             else break;
           }
+          // 해당 자리에 해당 숫자 대입
           arr[j + 1] = tmp;
         }
         return answer;
