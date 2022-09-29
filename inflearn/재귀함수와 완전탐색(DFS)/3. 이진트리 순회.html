@@ -7,10 +7,14 @@
     <script>
       function solution(n) {
         let answer = "";
+        // DFS로 이진트리 순회 (전위순회)
         function DFS(v) {
+          // 1부터 시작
+          // 8이상이면 리턴 -> 이전 스택 값으로 이동
           if (v > 7) return;
           else {
             answer += v + " ";
+            // 전위 순회 (후위 순회하기 위해선 밑의 2줄 코드를 변경)
             DFS(v * 2);
             DFS(v * 2 + 1);
           }
