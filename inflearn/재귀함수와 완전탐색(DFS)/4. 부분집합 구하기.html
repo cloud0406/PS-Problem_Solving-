@@ -5,19 +5,25 @@
   </head>
   <body>
     <script>
+      // 부분 집합 구하기
       function solution(n) {
         let answer = [];
+        // 우선 배열을 만들어준 후 (0으로 모두 초기화) / 탐색된 값은 1, 아닌 값은 0으로 지정
         let ch = Array.from({ length: n + 1 }, () => 0);
         function DFS(L) {
+          // 마지막 깊이까지 탐색하면 탐색 멈추고
           if (L === n + 1) {
             let tmp = "";
             for (let i = 1; i <= n; i++) {
+              // 탐색된 값들 문자열에 더해줌
               if (ch[i] === 1) tmp += i + " ";
             }
             if (tmp.length > 0) answer.push(tmp.trim());
           } else {
+            // 현재 값 탐색했음을 표기하기위해 1로 지정후 다음 값으로 탐색
             ch[L] = 1;
             DFS(L + 1);
+            // 이전 레벨로 올라가서 탐색하기 전에 현제 레벨 다시 0으로 지정 후 마저 탐색
             ch[L] = 0;
             DFS(L + 1);
           }
