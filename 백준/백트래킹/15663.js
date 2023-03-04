@@ -27,8 +27,6 @@ const [N, M, ...arr] = require("fs")
   .trim()
   .split(/\s+/);
 
-console.log(N, M, arr);
-
 arr.sort((a, b) => a - b);
 
 solve(+N, +M, arr);
