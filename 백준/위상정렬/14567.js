@@ -23,4 +23,4 @@ for (let i = 1; i <= N; i++) {
 }
 
 semester.shift();
-console.log(semester);
+console.log(semester.join(" "));
