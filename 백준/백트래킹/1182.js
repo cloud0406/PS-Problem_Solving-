@@ -1,6 +1,6 @@
 const input = require("fs")
   .readFileSync(
-    process.platform === "linux" ? "dev/stdin" : __dirname + "/input/1182.txt"
+    process.platform === "linux" ? "/dev/stdin" : __dirname + "/input/1182.txt"
   )
   .toString()
   .trim()
@@ -10,26 +10,21 @@ const [N, S] = input[0].split(" ").map(Number);
 const arr = input[1].split(" ").map(Number);
 
 function solution() {
-  const stack = [];
   let answer = 0;
 
-  function dfs(L) {
-    if (L === N) {
-      let sum = stack.reduce((acc, cur) => acc + cur, 0);
-      if (sum === S) answer++;
-      return;
-    }
+  function dfs(L, sum) {
+    if (L === N) return;
 
-    stack.push(arr[L]);
-    dfs(L + 1);
-    stack.pop();
-    dfs(L + 1);
+    sum += arr[L];
+    if (sum === S) answer++;
+
+    dfs(L + 1, sum - arr[L]); // 현재 값 선택 x
+    dfs(L + 1, sum); // 현재 값 선택
   }
 
-  dfs(0);
+  dfs(0, 0);
 
-  if (S === 0) answer--;
-  console.log(answer);
+  return answer;
 }
 
-solution();
+console.log(solution());
