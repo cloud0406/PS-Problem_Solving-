@@ -10,8 +10,8 @@ const [N, ...player] = require("fs")
 function solution() {
   let answer = Infinity;
 
-  // 비트를 하나씩 이동하며 각 요소가 1인지 확인
-  const check = (n) => {
+  // (0001, 1110)의 경우 해당 구성원들이 어느 팀이냐만 다르기 때문에 중복되므로 굳이 확인 필요 x
+  const checkOverlap = (n) => {
     let cnt = 0;
 
     while (n > 0) {
@@ -19,19 +19,17 @@ function solution() {
       n = n >> 1; // ex: 13(1101) -> 6(110) , 10(1010) -> 5(101)
     }
 
-    // 비트로 나타냈을때, 1이 0과 같거나 적으면 true
+    // 스타트팀의 인원이 총 인원의 절반보다 많을 경우는 건너뜀 , ex) 1110 -> 0001에서 이미 체크
     if (cnt <= Math.floor(N / 2)) return true;
     else return false;
   };
 
-  const getSpec = (arr) => {
+  const getSpec = (team) => {
     let spec = 0;
-    for (let i = 0; i < arr.length; i++) {
-      const x = arr[i];
-      for (let j = 0; j < arr.length; j++) {
-        if (i == j) continue;
-        const y = arr[j];
-        spec += player[x][y];
+
+    for (let i = 0; i < team.length; i++) {
+      for (let j = 0; j < team.length; j++) {
+        spec += player[team[i]][team[j]];
       }
     }
 
@@ -40,7 +38,7 @@ function solution() {
 
   // 1<<N : 2^n -> 비트 표기위해서 / 4명일경우 ~15(1111 : 4자리 필요)
   for (let i = 0; i < 1 << N; i++) {
-    if (check(i)) {
+    if (checkOverlap(i)) {
       let value = i;
       const start = [];
       const link = [];
@@ -50,13 +48,10 @@ function solution() {
         if (value & 1) start.push(j); // 해당 비트 1이면 스타트팀
         else link.push(j); // 해당 비트 0이면 링크팀
 
-        value = value >> 1;
+        value = value >> 1; // ex: 1101 -> 110 , 1010 -> 101
       }
 
-      console.log(start);
-
       const specStart = getSpec(start);
-      console.log(specStart);
       const specLink = getSpec(link);
 
       const specDiff = Math.abs(specLink - specStart);
