@@ -7,29 +7,26 @@ let [S, T] = require("fs")
   .split("\n");
 
 function solution(S, T) {
-  while (T.length >= S.length) {
-    if (S === T) return 1;
-    let reverseT = T.split("").reverse().join("");
+  const case1 = (T) => T.slice(0, -1);
 
-    if (T[0] === "B" && reverseT[0] === "B") {
-      T = reverseT.slice(0, -1);
-    } else if (T[0] === "B" && reverseT[0] === "A") {
-      if (reverseT.slice(0, -1) === S) return 1;
-      else if (
-        reverseT.slice(0, S.length) === S &&
-        reverseT.length > S.length &&
-        !reverseT.slice(S.length).includes("B")
-      ) {
-        return 1;
-      } else {
-        T = T.slice(0, -1);
-      }
-    } else if (T[0] === "A" && reverseT[0] === "A") {
-      T = T.slice(0, -1);
-    } else return 0;
-  }
+  const case2 = (T) => T.split("").reverse().join("").slice(0, -1);
 
-  return 0;
+  const game = (T) => {
+    if (T.length < S.length) return false;
+    if (T === S) return true;
+
+    const firstChar = T[0];
+    const lastChar = T[T.length - 1];
+
+    if (firstChar === "B" && lastChar === "B") return game(case2(T));
+    if (firstChar === "B" && lastChar === "A") {
+      return game(case1(T)) || game(case2(T));
+    }
+    if (firstChar === "A" && lastChar === "A") return game(case1(T));
+    if (firstChar === "A" && lastChar === "B") return false;
+  };
+
+  return game(T) ? 1 : 0;
 }
 
 console.log(solution(S, T));
