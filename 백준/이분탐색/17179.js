@@ -11,9 +11,9 @@ const spots = [...input.slice(1, M + 1).map(Number), L];
 const Q = input.slice(1 + M);
 
 function solution(N, M, L, spots, Q) {
-  // 해당 mid 값으로 cnt 횟수만큼 자르는게 가능한지 확인
+  // 해당 mid 길이보다 작은 길이 케이크 있는지 체크
   const isPossible = (mid, cnt) => {
-    let prev = 0;
+    let prev = 0; // 바로 직전에 자른 지점 저장
     for (let spot of spots) {
       if (spot - prev >= mid) {
         cnt--;
