@@ -7,7 +7,7 @@ const input = require("fs")
   .split("\n");
 
 const [n, m] = input[0].split(" ").map(Number);
-const univ = input[1].split(" ");
+const school = input[1].split(" ");
 const edges = [];
 
 for (let i = 0; i < m; i++) {
@@ -17,7 +17,7 @@ for (let i = 0; i < m; i++) {
 
 edges.sort((a, b) => a[0] - b[0]);
 
-function solution(n, m, edges, univ) {
+function solution(n, m, edges, school) {
   let answer = 0;
   let cnt = 0;
   const parent = Array.from({ length: n }, (_, i) => i);
@@ -38,7 +38,7 @@ function solution(n, m, edges, univ) {
 
   for (const [d, u, v] of edges) {
     if (
-      univ[u] !== univ[v] &&
+      school[u] !== school[v] &&
       find_parent(parent, u) !== find_parent(parent, v)
     ) {
       union(parent, u, v);
@@ -52,4 +52,4 @@ function solution(n, m, edges, univ) {
   else return -1;
 }
 
-console.log(solution(n, m, edges, univ));
+console.log(solution(n, m, edges, school));
