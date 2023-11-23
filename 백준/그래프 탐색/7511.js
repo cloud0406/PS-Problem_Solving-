@@ -6,32 +6,27 @@ const input = require("fs")
   .trim()
   .split("\n");
 let index = 0;
+let answer = [];
 
 const t = parseInt(input[index++]);
 
 function find(p, x) {
-  if (p[x] !== x) {
-    p[x] = find(p, p[x]);
-  }
+  if (p[x] !== x) p[x] = find(p, p[x]);
+
   return p[x];
 }
 
 function union(p, a, b) {
   a = find(p, a);
   b = find(p, b);
-  if (a < b) {
-    p[b] = a;
-  } else {
-    p[a] = b;
-  }
+  if (a < b) p[b] = a;
+  else p[a] = b;
 }
 
 for (let i = 1; i <= t; i++) {
   const n = parseInt(input[index++]);
-  const p = Array.from({ length: n }, (_, index) => index);
+  const p = Array.from({ length: n }, (_, i) => i);
   const k = parseInt(input[index++]);
-
-  console.log(n, p, k);
 
   for (let j = 0; j < k; j++) {
     const [a, b] = input[index++].split(" ").map(Number);
@@ -40,14 +35,17 @@ for (let i = 1; i <= t; i++) {
     }
   }
 
-  console.log(`Scenario ${i}:`);
-  for (let m = 0; m < parseInt(input[index++]); m++) {
+  answer.push(`Scenario ${i}:`);
+  const repeat = parseInt(input[index++]);
+
+  for (let m = 0; m < repeat; m++) {
     const [a, b] = input[index++].split(" ").map(Number);
-    if (find(p, a) !== find(p, b)) {
-      console.log(0);
-    } else {
-      console.log(1);
-    }
+
+    if (find(p, a) !== find(p, b)) answer.push(0);
+    else answer.push(1);
   }
-  console.log();
+
+  answer.push("");
 }
+
+console.log(answer.join("\n"));
