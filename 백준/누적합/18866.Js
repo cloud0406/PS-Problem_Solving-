@@ -31,8 +31,10 @@ function solution(N, v) {
     if (max_happy < v[i][0] && v[i][0] !== 0) max_happy = v[i][0];
     if (min_tired > v[i][1] && v[i][1] !== 0) min_tired = v[i][1];
 
-    old.unshift([max_happy, min_tired]);
+    old.push([max_happy, min_tired]);
   }
+
+  old.reverse(); // 늙은 날 정보는 역순으로 저장되어 있으므로 reverse
 
   for (let K = N - 2; K >= 0; K--) {
     const [young_happy, young_tired] = young[K];
