@@ -1,6 +1,6 @@
 const input = require("fs")
   .readFileSync(
-    process.platform === "linux" ? "/dev/stdin" : __dirname + "/input/2922.txt"
+    process.platform === "linux" ? "/dev/stdin" : __dirname + "/input/2178.txt"
   )
   .toString()
   .trim()
@@ -37,8 +37,6 @@ function solution(N, M, map) {
           queue.push([nx, ny]);
         }
       }
-
-      console.log(visited);
     }
 
     return visited[N - 1][M - 1];
