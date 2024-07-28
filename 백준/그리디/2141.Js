@@ -16,6 +16,8 @@ function solution(N, villages) {
   let all = villages.reduce((acc, cur) => acc + cur[1], 0);
   let sum = 0;
 
+  console.log(all);
+
   for (let [village, people] of villages) {
     sum += people;
     if (sum >= all / 2) return village;

@@ -30,7 +30,6 @@ function solution() {
       // 부모 관계 만들기
       if (!tree[nodes[i]]) tree[nodes[i]] = [];
       tree[nodes[i]].push(nodes[curIdx]);
-      console.log(tree);
     }
 
     // k의 부모, 조상(부모의 직속 부모) 노드 찾기

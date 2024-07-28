@@ -19,6 +19,8 @@ function solution() {
     save[b] -= k;
   }
 
+  console.log(save);
+
   const dp = Array(N + 1).fill(0);
   dp[0] = save[0];
 
